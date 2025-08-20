@@ -85,7 +85,8 @@ class Sternberg(object):
             used_set = random.sample(self.STIM_SET, r["setSize"])
             unused_set = list(set(self.STIM_SET) - set(used_set))
 
-            df.at[i, "set"] = "".join(str(x for x in used_set))
+            # Corrected: join string representations of numbers
+            df.at[i, "set"] = "".join(str(x) for x in used_set)
 
             # Store the target probe number
             # Probe will be from/in the set 50% of the time (probe present)
@@ -94,26 +95,26 @@ class Sternberg(object):
             else:
                 df.at[i, "probe"] = str(random.choice(unused_set))
 
-            # Store blank columns to be used later
-            df["trialNum"] = ""
-            df["block"] = ""
-            df["response"] = ""
-            df["RT"] = ""
-            df["correct"] = ""
+        # Store blank columns to be used later
+        df["trialNum"] = ""
+        df["block"] = ""
+        df["response"] = ""
+        df["RT"] = ""
+        df["correct"] = ""
 
-            # Rearrange the dataframe
-            columns = [
-                "trialNum",
-                "block",
-                "setSize",
-                "probeType",
-                "set",
-                "probe",
-                "response",
-                "RT",
-                "correct",
-            ]
-            df = df[columns]
+        # Rearrange the dataframe
+        columns = [
+            "trialNum",
+            "block",
+            "setSize",
+            "probeType",
+            "set",
+            "probe",
+            "response",
+            "RT",
+            "correct",
+        ]
+        df = df[columns]
 
         return df
 

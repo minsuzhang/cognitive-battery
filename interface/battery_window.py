@@ -414,6 +414,9 @@ class BatteryWindow(QtWidgets.QMainWindow, battery_window_qt.Ui_CognitiveBattery
 
                 # Create primary task window
                 # pygame_screen is passed to each task as the display window
+
+                self.task_fullscreen = True
+
                 if self.task_fullscreen:
                     self.pygame_screen = pygame.display.set_mode(
                         (0, 0), pygame.FULLSCREEN
